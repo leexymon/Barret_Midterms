@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal | Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">BARBIELAT</a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Products Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Carefully curated essentials</p>
+        </div>
+    </section>
+
+    <!-- Products Filter -->
+    <section class="products-filter">
+        <div class="container">
+            <div class="filter-options">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="home">Home</option>
+                </select>
+                <select id="sort-by">
+                    <option value="default">Sort by</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-grid-section">
+        <div class="container">
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+          <div class="footer-content">
+              <div class="footer-section">
+                  <h3>BARBIE TOYS</h3>
+                  <p>Bringing joy and imagination to life.</p>
+              </div>
+              <div class="footer-section">
+                  <h4>Quick Links</h4>
+                  <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About</a></li>
+                      <li><a href="products.html">Products</a></li>
+                      <li><a href="contact.html">Contact</a></li>
+                  </ul>
+              </div>
+              <div class="footer-section">
+                  <h4>Contact Us</h4>
+                  <p>info@barbietoys.com</p>
+                  <p>+1 234 567 890</p>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p>&copy; 2023 BARBIE TOYS. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+  
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <p>Total: $<span id="cart-total">0</span></p>
+            <button class="btn checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Product data
+        const products = [
+    { id: 1, name: "Barbie Dream Watch", price: 120, category: "accessories", image: "images/1.jpg" },
+    { id: 2, name: "Barbie Fun Mug", price: 25, category: "home", image: "images/2.png" },
+    { id: 3, name: "Barbie Dream Shelf", price: 85, category: "furniture", image: "images/3.jpg" },
+    { id: 4, name: "Barbie Leather Journal", price: 35, category: "accessories", image: "images/4.jpg" },
+    { id: 5, name: "Barbie Ceramic Vase", price: 45, category: "home", image: "images/5.jpg" },
+    { id: 6, name: "Barbie Desk Lamp", price: 65, category: "furniture", image: "images/6.jpg" },
+    { id: 7, name: "Barbie Cotton Throw", price: 55, category: "home", image: "images/7.jpg" },
+    { id: 8, name: "Barbie Bamboo Chair", price: 150, category: "furniture", image: "images/8.jpg" },
+    { id: 9, name: "Barbie Wall Clock", price: 40, category: "accessories", image: "images/9.jpg" },
+    { id: 10, name: "Barbie Wool Rug", price: 90, category: "home", image: "images/10.jpg" }
+];
+
+        // DOM elements
+        const productsGrid = document.getElementById('products-grid');
+        const categoryFilter = document.getElementById('category-filter');
+        const sortBy = document.getElementById('sort-by');
+
+        // Render products
+        function renderProducts(productsToRender) {
+            productsGrid.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                productsGrid.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+            
+            productsToRender.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card';
+                productElement.setAttribute('data-aos', 'fade-up'); // Added AOS fade-up here
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price.toFixed(2)}</p>
+                    <button class="btn add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+                `;
+                productsGrid.appendChild(productElement);
+            });
+            
+            // Add event listeners to new add to cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    const name = e.target.getAttribute('data-name');
+                    const price = e.target.getAttribute('data-price');
+                    
+                    addToCart(id, name, price);
+                    
+                    // Show cart sidebar when adding an item
+                    if (!cartSidebar.classList.contains('active')) {
+                        toggleCart();
+                    }
+                });
+            });
+        }
+
+        // Filter and sort products
+        function filterAndSortProducts() {
+            let filteredProducts = [...products];
+            
+            // Filter by category
+            if (categoryFilter.value !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === categoryFilter.value);
+            }
+            
+            // Sort products
+            switch (sortBy.value) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                default:
+                    // Default sorting (by ID or whatever)
+                    break;
+            }
+            
+            renderProducts(filteredProducts);
+        }
+
+        // Event listeners
+        categoryFilter.addEventListener('change', filterAndSortProducts);
+        sortBy.addEventListener('change', filterAndSortProducts);
+
+        // Initial render
+        renderProducts(products);
+    </script>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init(); // Initialize AOS
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal | About</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">BARBIELAT</a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+   <!-- About Hero -->
+<section class="page-hero">
+  <div class="container">
+      <h1>About Us</h1>
+      <p>Our story and philosophy</p>
+  </div>
+</section>
+
+<!-- About Content -->
+<section class="about-content">
+  <div class="container">
+      <div class="about-text">
+          <h2>Our Story</h2>
+          <p>Founded in 2023, BARBIELAT is dedicated to bringing the magic of Barbie dolls to children of all ages. With a passion for imagination and play, we create toys that inspire creativity and self-expression.</p>
+          <p>Our journey began with a single Barbie doll and has since expanded into a full range of dolls, accessories, and playsets, all designed to empower and engage young minds.</p>
+
+          <h2>Our Philosophy</h2>
+          <p>We believe that play is an essential part of childhood, and every Barbie doll is designed to inspire stories, adventures, and endless possibilities. Our products are made with care and precision, encouraging children to dream big and embrace their individuality.</p>
+          <ul>
+              <li>Empowering children to explore and create their own stories</li>
+              <li>Safe, high-quality materials for every product</li>
+              <li>Environmentally conscious production processes</li>
+              <li>Timeless designs that spark imagination beyond trends</li>
+          </ul>
+      </div>
+  </div>
+</section>
+
+
+<!-- Team Section -->
+<section class="team-section">
+  <div class="container">
+      <h2>Our Team</h2>
+      <p>Behind MINIMAL is a collaborative team of designers, developers, and creatives dedicated to crafting meaningful products. Every decision, from concept to creation, is guided by our shared values of simplicity, purpose, and excellence.</p>
+  </div>
+</section>
+
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+          <div class="footer-content">
+              <div class="footer-section">
+                  <h3>BARBIE TOYS</h3>
+                  <p>Bringing joy and imagination to life.</p>
+              </div>
+              <div class="footer-section">
+                  <h4>Quick Links</h4>
+                  <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About</a></li>
+                      <li><a href="products.html">Products</a></li>
+                      <li><a href="contact.html">Contact</a></li>
+                  </ul>
+              </div>
+              <div class="footer-section">
+                  <h4>Contact Us</h4>
+                  <p>info@barbietoys.com</p>
+                  <p>+1 234 567 890</p>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p>&copy; 2023 BARBIE TOYS. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+  
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <p>Total: $<span id="cart-total">0</span></p>
+            <button class="btn checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
